@@ -25,3 +25,4 @@ yarn-error.log*
 
 # Other files
 steps.txt
+/src/assets/img/downloaded_images
