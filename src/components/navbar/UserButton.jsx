@@ -68,7 +68,10 @@ const UserButton = () => {
           {/* Only show this option if the user is authenticated and is admin */}
           {user && user.email === process.env.REACT_APP_ADMIN_MAIL && (
             <Link to={"/createItem"}>
-              <p className="px-4 py-2 flex items-center  ml-auto gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base">
+              <p
+                className="px-4 py-2 flex items-center  ml-auto gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base"
+                onClick={() => setIsMenu(false)}
+              >
                 <MdAdd /> New item{" "}
               </p>
             </Link>

@@ -9,7 +9,7 @@ import UserButton from "./navbar/UserButton";
 const Header = () => {
 
   return (
-    <header className="fixed w-full p-3 px-4 md:p-6 lg:px-16 md:px-5 select-none bg-primary">
+    <header className="fixed w-full p-3 px-4 md:p-6 lg:px-16 md:px-5 select-none bg-primary z-10">
       {/* desktop and tablet */}
       <div className="hidden md:flex items-center justify-between">
         <Logo />

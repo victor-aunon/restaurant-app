@@ -42,13 +42,13 @@ function HomeContainer() {
       </div>
 
       {/* Right side */}
-      <div className="py-2 flex flex-1 items-start relative -mt-[27rem] md:mt-0">
+      <div className="py-2 flex flex-1 items-start relative -mt-[27rem] md:mt-8">
         <SectionSVGBackground />
 
         <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 xl:px-32 py-4 gap-4 flex-wrap">
           {heroProductsData &&
             heroProductsData.map(pr => (
-              <ProductCard product={pr} />
+              <ProductCard key={pr.id} product={pr} />
             ))}
         </div>
       </div>
