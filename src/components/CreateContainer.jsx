@@ -6,12 +6,14 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import { actionType } from "../context/reducer";
 
 import { MdFastfood, MdCloudUpload, MdDelete, MdEuro } from "react-icons/md";
 
 import { categories } from "../utils/productsData";
 import { storage } from "../firebase.config";
 import { saveProduct, getProducts } from "../utils/firebaseFunctions";
+import { useStateValue } from "../context/StateProvider";
 
 import Loader from "./Loader";
 
@@ -24,6 +26,8 @@ const CreateContainer = () => {
   const [alertStatus, setAlertStatus] = useState("danger");
   const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [{ foodItems }, dispatch] = useStateValue();
 
   function hideSpinnerAndMsg() {
     setTimeout(() => {
@@ -124,7 +128,18 @@ const CreateContainer = () => {
       setAlertStatus("danger");
       hideSpinnerAndMsg();
     }
+
+    fetchFoodItems();
   };
+
+  const fetchFoodItems = async () => {
+    await getProducts().then(data => {
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
+      });
+    });
+  }
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
