@@ -33,3 +33,13 @@ export const heroProductsData = [
     imgSrc: img4,
   },
 ];
+
+export const categories = [
+  { id: 1, name: "Starters", urlParamName: "starters" },
+  { id: 2, name: "Nigiri", urlParamName: "nigiri" },
+  { id: 3, name: "Maki", urlParamName: "maki" },
+  { id: 4, name: "Temaki", urlParamName: "temaki" },
+  { id: 5, name: "Sashimi", urlParamName: "sashimi" },
+  { id: 6, name: "Tempura", urlParamName: "tempura" },
+  { id: 7, name: "Drinks", urlParamName: "drinks" },
+];

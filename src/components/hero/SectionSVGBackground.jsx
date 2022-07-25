@@ -19,12 +19,12 @@ function SectionSVGBackground() {
         <rect fill={colors.color1} width="100%" height="100%" />
         <defs>
           <linearGradient id="opa" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0" stop-color={colors.color3} stop-opacity="0.5" />
-            <stop offset="0.95" stop-color={colors.background} stop-opacity="1" />
+            <stop offset="0" stopColor={colors.color3} stopOpacity="0.5" />
+            <stop offset="0.95" stopColor={colors.background} stopOpacity="1" />
           </linearGradient>
           <radialGradient id="a" gradientUnits="objectBoundingBox">
-            <stop offset="0" stop-color={colors.color3} />
-            <stop offset="1" stop-color={colors.color1} />
+            <stop offset="0" stopColor={colors.color3} />
+            <stop offset="1" stopColor={colors.color1} />
           </radialGradient>
           <linearGradient
             id="b"
@@ -34,8 +34,8 @@ function SectionSVGBackground() {
             x2="1550"
             y2="750"
           >
-            <stop offset="0" stop-color={colors.color2} />
-            <stop offset="1" stop-color={colors.color1} />
+            <stop offset="0" stopColor={colors.color2} />
+            <stop offset="1" stopColor={colors.color1} />
           </linearGradient>
           <path
             id="s"
@@ -82,7 +82,7 @@ function SectionSVGBackground() {
               <use href="#g" transform="rotate(120)" />
               <use href="#g" transform="rotate(240)" />
             </g>
-            <circle fill-opacity="0" fill="url(#a)" r="3000" />
+            <circle fillOpacity="0" fill="url(#a)" r="3000" />
             {/* Add this rectangle at the end to reduce opacity */}
             <rect
               id="cover"
@@ -90,7 +90,7 @@ function SectionSVGBackground() {
               height="100%"
               fill="url(#opa)"
               stroke={colors.background}
-              stroke-width="130px"
+              strokeWidth="130px"
               rx="150"
               ry="150"
             />
