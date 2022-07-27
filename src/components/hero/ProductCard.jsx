@@ -12,7 +12,7 @@ export const ProductCard = props => {
       <p className="text-xs md:text-sm text-gray-500 my-3">{description}</p>
       <p className="text-base font-semibold text-headingColor">
         {price}
-        <span className="text-base text-red-600"> €</span>
+        <span className="text-base text-red-600"> {process.env.REACT_APP_CURRENCY_SYMBOL}</span>
       </p>
     </div>
   );

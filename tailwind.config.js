@@ -18,9 +18,12 @@ module.exports = {
         cartNumBg: "#e80013",
         primary: "#f5f3f3",
         cardOverlay: "rgba(255, 255, 255, 0.4)",
+        card: "rgba(255, 255, 255, 0.8)",
         lightTextGray: "#9ca0ab"
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar")
+  ],
 }

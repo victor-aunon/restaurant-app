@@ -10,7 +10,7 @@ import { ProductCard } from "./hero/ProductCard";
 function HomeContainer() {
   return (
     <section
-      className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-[85rem] sm:h-full"
+      className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-[85rem] sm:h-full mb-8"
       id="home"
     >
       {/* Left side */}

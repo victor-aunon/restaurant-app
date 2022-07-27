@@ -9,6 +9,7 @@ import { getProducts } from "./utils/firebaseFunctions";
 import { Header, MainContainer, CreateContainer } from "./components";
 
 const App = () => {
+  // eslint-disable-next-line no-unused-vars
   const [{ foodItems }, dispatch] = useStateValue();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const App = () => {
       });
     }
     fetchFoodItems();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

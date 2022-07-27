@@ -27,6 +27,7 @@ const CreateContainer = () => {
   const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // eslint-disable-next-line no-unused-vars
   const [{ foodItems }, dispatch] = useStateValue();
 
   function hideSpinnerAndMsg() {
