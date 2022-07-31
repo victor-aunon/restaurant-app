@@ -26,3 +26,5 @@ yarn-error.log*
 # Other files
 steps.txt
 /src/assets/img/downloaded_images
+/src/assets/img/*.png
+!/src/assets/img/user_profile.png
