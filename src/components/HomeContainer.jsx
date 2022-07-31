@@ -10,11 +10,11 @@ import { ProductCard } from "./hero/ProductCard";
 function HomeContainer() {
   return (
     <section
-      className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-[85rem] sm:h-full mb-8"
+      className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-[83rem] sm:h-full md:h-[55rem] lg:h-full mb-8"
       id="home"
     >
       {/* Left side */}
-      <div className="py-2 flex flex-col items-start justify-start md:justify-center gap-6">
+      <div className="py-2 flex flex-col items-start justify-start 2xl:justify-center gap-6 sm:h-[50rem]">
         <div className="flex items-center gap-2 justify-center bg-red-100 px-3 py-2 rounded-full">
           <p className="text-base text-red-600 font-semibold">Bike delivery</p>
           <div className="w-9 h-9 bg-white rounded-full overflow-hidden p-1 shadow-xl">
@@ -45,7 +45,7 @@ function HomeContainer() {
       <div className="py-2 flex flex-1 items-start relative -mt-[27rem] md:mt-8">
         <SectionSVGBackground />
 
-        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 xl:px-32 py-4 gap-4 flex-wrap">
+        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 2xl:px-30 lg:px-15 py-4 gap-4 flex-wrap">
           {heroProductsData &&
             heroProductsData.map(pr => (
               <ProductCard key={pr.id} product={pr} />
