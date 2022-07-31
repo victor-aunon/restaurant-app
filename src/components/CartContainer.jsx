@@ -12,7 +12,7 @@ import { actionType } from "../context/reducer";
 import CartItem from "./cart/CartItem";
 
 const CartContainer = () => {
-  const [{ cartShow, cartItems }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
   function showCart() {
     dispatch({
@@ -66,13 +66,19 @@ const CartContainer = () => {
               <p className="text-gray-200 text-xl font-semibold">13 €</p>
             </div>
 
-            <motion.button
-              whileTap={{ scale: 0.8 }}
-              type="button"
-              className="w-full p-2 rounded-full bg-gradient-to-tr from-red-400 to-red-500 text-gray-50 text-lg my-2 hover:shadow-lg"
-            >
-              Check out
-            </motion.button>
+            {user ? (
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                type="button"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-red-400 to-red-500 text-gray-50 text-lg my-2 hover:shadow-lg"
+              >
+                Check out
+              </motion.button>
+            ) : (
+              <div className="w-full p-2 text-center rounded-full bg-gradient-to-tr from-red-400 to-red-500 text-gray-50 text-lg my-2 hover:shadow-lg">
+                Login to check out
+              </div>
+            )}
           </div>
         </div>
       ) : (
