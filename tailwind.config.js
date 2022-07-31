@@ -19,7 +19,10 @@ module.exports = {
         primary: "#f5f3f3",
         cardOverlay: "rgba(255, 255, 255, 0.4)",
         card: "rgba(255, 255, 255, 0.8)",
-        lightTextGray: "#9ca0ab"
+        lightTextGray: "#9ca0ab",
+        cartBg: "#282a2c",
+        cartItem: "#2e3033",
+        cartTotal: "#343739",
       }
     },
   },

@@ -9,9 +9,10 @@ import { useStateValue } from "../context/StateProvider";
 import HomeContainer from "./HomeContainer";
 import RowContainer from "./products/RowContainer";
 import MenuContainer from "./MenuContainer";
+import CartContainer from "./CartContainer";
 
 const MainContainer = () => {
-  const [{ foodItems }] = useStateValue();
+  const [{ foodItems, cartShow }] = useStateValue();
   const rowContainerRef = useRef();
 
   function scroll(scrollOffset) {
@@ -59,6 +60,8 @@ const MainContainer = () => {
       </section>
 
       <MenuContainer />
+
+      {cartShow && <CartContainer />}
     </div>
   );
 };

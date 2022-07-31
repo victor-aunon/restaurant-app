@@ -1,8 +1,19 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FaShoppingBasket } from "react-icons/fa";
 
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
+
 const MenuProductCard = ({ item }) => {
+  const [{ cartItems }, dispatch] = useStateValue();
+
+  function addToCart(item) {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: [...cartItems, item],
+    });
+  }
+
   return (
     <div
       key={item.id}
@@ -19,6 +30,7 @@ const MenuProductCard = ({ item }) => {
         <motion.div
           whileTap={{ scale: 0.75 }}
           className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md"
+          onClick={() => addToCart(item)}
         >
           <FaShoppingBasket className="text-white" />
         </motion.div>
@@ -30,7 +42,10 @@ const MenuProductCard = ({ item }) => {
         </p>
         <div className="flex items-center gap-8">
           <p className="text-lg text-headingColor font-semibold">
-            {item.price} <span className="text-base text-red-600">{process.env.REACT_APP_CURRENCY_SYMBOL}</span>
+            {item.price}{" "}
+            <span className="text-base text-red-600">
+              {process.env.REACT_APP_CURRENCY_SYMBOL}
+            </span>
           </p>
         </div>
       </div>
