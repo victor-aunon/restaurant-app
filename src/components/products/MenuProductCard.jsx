@@ -8,9 +8,21 @@ const MenuProductCard = ({ item }) => {
   const [{ cartItems }, dispatch] = useStateValue();
 
   function addToCart(item) {
+    let items = [];
+    const index = cartItems.findIndex(_item => _item.id === item.id);
+
+    // If the item is in cartItems, update quantity, otherwise add it
+    if (index > -1) {
+      items = cartItems.map(_item => {
+        if (_item.id === item.id) _item.quantity++;
+        return _item;
+      });
+    } else {
+      items = [...cartItems, item];
+    }
     dispatch({
       type: actionType.SET_CART_ITEMS,
-      cartItems: [...cartItems, item],
+      cartItems: items,
     });
   }
 

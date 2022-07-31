@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
@@ -14,12 +14,28 @@ import CartItem from "./cart/CartItem";
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
+  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const deliveryPrice = Number(process.env.REACT_APP_DELIVERY_PRICE);
+
   function showCart() {
     dispatch({
       type: actionType.SET_CART_SHOW,
       cartShow: !cartShow,
     });
   }
+
+  // Update total price
+  useEffect(() => {
+    const totalPrice = cartItems.reduce(
+      (accum, item) => accum + item.quantity * item.price,
+      0
+    );
+    setSubtotal(totalPrice);
+    setTotal(totalPrice + deliveryPrice);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems]);
 
   return (
     <motion.div
@@ -47,23 +63,23 @@ const CartContainer = () => {
           <div className="w-full h-[340px] md:h-40 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none">
             {/* Show cart items */}
             {cartItems.map(item => (
-              <CartItem item={item} />
+              <CartItem key={`${item.id}-cart-item`} item={item} />
             ))}
           </div>
           {/* Cart total */}
           <div className="w-full flex-1 bg-cartTotal rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2">
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Sub total</p>
-              <p className="text-gray-400 text-lg">10 €</p>
+              <p className="text-gray-400 text-lg">{subtotal} €</p>
             </div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Delivery</p>
-              <p className="text-gray-400 text-lg">3 €</p>
+              <p className="text-gray-400 text-lg">{deliveryPrice} €</p>
             </div>
             <div className="w-full border-b border-gray-600 my-2"></div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-xl font-semibold">Total</p>
-              <p className="text-gray-200 text-xl font-semibold">13 €</p>
+              <p className="text-gray-200 text-xl font-semibold">{total}€</p>
             </div>
 
             {user ? (
