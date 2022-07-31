@@ -29,7 +29,7 @@ const MenuProductCard = ({ item }) => {
   return (
     <div
       key={item.id}
-      className="min-w-[275px] w-[275px] md:min-w-[300px] md:w-[300px] h-auto my-12 bg-gray-100 rounded-lg p-2 backdrop-blur-lg hover:drop-shadow-lg hover:bg-cardOverlay select-none flex flex-col items-center justify-between"
+      className="min-w-[275px] w-[275px] md:min-w-[300px] md:w-[300px] h-[12rem] my-12 bg-gray-100 rounded-lg p-2 backdrop-blur-lg hover:drop-shadow-lg hover:bg-cardOverlay select-none flex flex-col items-center justify-between"
     >
       <div className="w-full flex items-center justify-between">
         <motion.img
