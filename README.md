@@ -8,6 +8,8 @@ This project is a restaurant react app where you can add menu items to the cart,
  - **Firebase Google authentication**
  - **Browser local storage**
 
+Take a look to the live project at [**netlify**](https://spiffy-syrniki-b88c3b.netlify.app/).
+
 
 # Getting Started with Create React App
 
