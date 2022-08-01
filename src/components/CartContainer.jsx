@@ -26,6 +26,19 @@ const CartContainer = () => {
     });
   }
 
+  function clearCart() {
+    // Restore quantity to 1
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: cartItems.map(item => item.quantity = 1),
+    });
+    // Remove cart items
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: [],
+    });
+  }
+
   // Update total price
   useEffect(() => {
     const totalPrice = cartItems.reduce(
@@ -50,7 +63,7 @@ const CartContainer = () => {
         </motion.div>
         <p className="text-textColor text-lg font-semibold">Cart</p>
         <motion.p
-          whileTap={{ scale: 0.75 }}
+          whileTap={{ scale: 0.75 }} onClick={clearCart}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md cursor-pointer text-textColor text-base"
         >
           Clear <RiRefreshFill />

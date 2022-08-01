@@ -43,7 +43,7 @@ const CartItem = ({ item }) => {
 
   // Update the quantity when cartItems changes (adding product from MenuContainer)
   useEffect(() => {
-    setQuantity(cartItems.filter(it => it.id === item.id)[0].quantity);
+    setQuantity(() => cartItems.filter(it => it.id === item.id)[0].quantity);
     //   eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems]);
 
