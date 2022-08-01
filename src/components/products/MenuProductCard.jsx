@@ -41,10 +41,10 @@ const MenuProductCard = ({ item }) => {
         />
         <motion.div
           whileTap={{ scale: 0.75 }}
-          className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md"
+          className="w-10 h-10 mb-auto mt-2 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md"
           onClick={() => addToCart(item)}
         >
-          <FaShoppingBasket className="text-white" />
+          <FaShoppingBasket className="text-white text-2xl" />
         </motion.div>
       </div>
 
