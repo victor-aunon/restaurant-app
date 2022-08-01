@@ -7,14 +7,16 @@ const NavLinks = props => {
   return (
     <nav>
       <ul className={`flex items-center gap-8 ${justify}`}>
-        <Link to={"/"}>
+        <Link to={"/#home"}>
           <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
             Home
           </li>
         </Link>
+        <Link to={"/#menu"}>
         <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
           Menu
         </li>
+        </Link>
         <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
           About us
         </li>

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { RiEBike2Fill } from "react-icons/ri";
 
 import { heroProductsData } from "../utils/productsData";
@@ -37,7 +39,7 @@ function HomeContainer() {
           type="button"
           className="bg-gradient-to-br from-red-300 to-red-600 font-semibold w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg hover:text-slate-100 md:hover:scale-[1.2] transition-all ease-in-out duration-100"
         >
-          Order now
+          <Link to={"/#menu"}>Order now</Link>
         </button>
       </div>
 

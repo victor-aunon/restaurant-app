@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { actionType } from "./context/reducer";
 
@@ -11,6 +11,12 @@ import { Header, MainContainer, CreateContainer } from "./components";
 const App = () => {
   // eslint-disable-next-line no-unused-vars
   const [{ foodItems }, dispatch] = useStateValue();
+  const params = useLocation();
+  if (params.hash) {
+    const element = document.querySelector(params.hash);
+    if (element)
+      element.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
 
   useEffect(() => {
     async function fetchFoodItems() {
@@ -22,7 +28,7 @@ const App = () => {
       });
     }
     fetchFoodItems();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
