@@ -1,3 +1,14 @@
+# About this project
+
+This project is a restaurant react app where you can add menu items to the cart, simulating an online order. The project uses:
+ - **React: react-router-dom, react-icons, framer-motion**
+ - **TailwindCSS**
+ - **Firestore to store the menu in a collection**
+ - **Firebase**
+ - **Firebase Google authentication**
+ - **Browser local storage**
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
