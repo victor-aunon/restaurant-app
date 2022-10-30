@@ -27,7 +27,6 @@ const Header = () => {
           <Logo />
           <UserButton />
         </div>
-        
         <NavLinks justify="justify-center"/>
       </div>
     </header>

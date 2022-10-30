@@ -14,39 +14,41 @@ import { categories } from "../utils/productsData";
 import { storage } from "../firebase.config";
 import { saveProduct, getProducts } from "../utils/firebaseFunctions";
 import { useStateValue } from "../context/StateProvider";
+import { Product } from "../types/product";
 
 import Loader from "./Loader";
 
 const CreateContainer = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState(null);
-  const [imageAsset, setImageAsset] = useState(null);
+  const [category, setCategory] = useState("");
+  const [imageAsset, setImageAsset] = useState("");
   const [fields, setFields] = useState(false);
   const [alertStatus, setAlertStatus] = useState("danger");
-  const [msg, setMsg] = useState(null);
+  const [msg, setMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
-  const [{ foodItems }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   function hideSpinnerAndMsg() {
     setTimeout(() => {
       setFields(false);
       setIsLoading(false);
-      setMsg(null);
+      setMsg("");
     }, 4000);
   }
 
   function clearData() {
     setTitle("");
-    setImageAsset(null);
+    setImageAsset("");
     setPrice("");
   }
 
-  const uploadImage = e => {
+  const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Show the spinner
     setIsLoading(true);
+    if (e.target.files === null) return
     const imageFile = e.target.files[0];
 
     // Upload to firestore
@@ -86,7 +88,7 @@ const CreateContainer = () => {
     // Delete from firestore
     const deleteRef = ref(storage, imageAsset);
     deleteObject(deleteRef).then(() => {
-      setImageAsset(null);
+      setImageAsset("");
       setIsLoading(false);
       setFields(true);
       setMsg("Image deleted successfully");
@@ -107,7 +109,7 @@ const CreateContainer = () => {
 
       // Save the item data into firestore database
       setIsLoading(true);
-      const data = {
+      const data: Product = {
         id: `${Date.now()}`,
         title,
         imageURL: imageAsset,

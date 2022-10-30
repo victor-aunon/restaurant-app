@@ -30,7 +30,10 @@ const CartContainer = () => {
     // Restore quantity to 1
     dispatch({
       type: actionType.SET_CART_ITEMS,
-      cartItems: cartItems.map(item => item.quantity = 1),
+      cartItems: cartItems.map(item => {
+        item.quantity = 1;
+        return item;
+      }),
     });
     // Remove cart items
     dispatch({
@@ -42,7 +45,7 @@ const CartContainer = () => {
   // Update total price
   useEffect(() => {
     const totalPrice = cartItems.reduce(
-      (accum, item) => accum + item.quantity * item.price,
+      (accum, item) => accum + item.quantity * parseFloat(item.price),
       0
     );
     setSubtotal(totalPrice);
@@ -63,7 +66,8 @@ const CartContainer = () => {
         </motion.div>
         <p className="text-textColor text-lg font-semibold">Cart</p>
         <motion.p
-          whileTap={{ scale: 0.75 }} onClick={clearCart}
+          whileTap={{ scale: 0.75 }}
+          onClick={clearCart}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md cursor-pointer text-textColor text-base"
         >
           Clear <RiRefreshFill />

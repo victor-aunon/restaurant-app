@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
@@ -13,10 +13,10 @@ import CartContainer from "./CartContainer";
 
 const MainContainer = () => {
   const [{ foodItems, cartShow }] = useStateValue();
-  const rowContainerRef = useRef();
+  const rowContainerRef = useRef<HTMLDivElement>(null);
 
-  function scroll(scrollOffset) {
-    rowContainerRef.current.scrollBy({
+  function scroll(scrollOffset: number) {
+    rowContainerRef.current?.scrollBy({
       top: 0,
       left: scrollOffset,
       behavior: "smooth",

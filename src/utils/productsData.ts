@@ -3,7 +3,10 @@ import img2 from "../assets/img/takoyaki.png";
 import img3 from "../assets/img/maki-california.png";
 import img4 from "../assets/img/temaki.png";
 
-export const heroProductsData = [
+import { HeroProduct } from "../types/heroProduct";
+import { ProductCategory } from "../types/productCategory";
+
+export const heroProductsData: HeroProduct[] = [
   {
     id: 1,
     name: "Gyozas",
@@ -34,7 +37,7 @@ export const heroProductsData = [
   },
 ];
 
-export const categories = [
+export const categories: ProductCategory[] = [
   { id: 1, name: "Starters", urlParamName: "starters" },
   { id: 2, name: "Nigiri", urlParamName: "nigiri" },
   { id: 3, name: "Maki", urlParamName: "maki" },

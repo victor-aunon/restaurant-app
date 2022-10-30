@@ -3,19 +3,25 @@ import { FaShoppingBasket } from "react-icons/fa";
 
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
+import { Product } from "../../types/product";
 
-const MenuProductCard = ({ item }) => {
+interface MenuProductCardProps {
+  item: Product,
+  key?: Product["id"]
+}
+
+const MenuProductCard = ({ item }: MenuProductCardProps) => {
   const [{ cartItems }, dispatch] = useStateValue();
 
-  function addToCart(item) {
+  function addToCart(item: Product) {
     let items = [];
-    const index = cartItems.findIndex(_item => _item.id === item.id);
+    const index = cartItems.findIndex(it => it.id === item.id);
 
     // If the item is in cartItems, update quantity, otherwise add it
     if (index > -1) {
-      items = cartItems.map(_item => {
-        if (_item.id === item.id) _item.quantity++;
-        return _item;
+      items = cartItems.map(it => {
+        if (it.id === item.id) it.quantity++;
+        return it;
       });
     } else {
       items = [...cartItems, item];

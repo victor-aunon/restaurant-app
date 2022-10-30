@@ -10,7 +10,7 @@ import { Header, MainContainer, CreateContainer } from "./components";
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
-  const [{ foodItems }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
   const params = useLocation();
   if (params.hash) {
     const element = document.querySelector(params.hash);

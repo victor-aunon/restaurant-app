@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
+import { Product } from "../../types/product";
 
-let items = [];
+let items: Product[] = [];
 
-const CartItem = ({ item }) => {
+interface CartItemProps {
+  item: Product;
+}
+
+type QuantityAction = "add" | "remove";
+
+const CartItem = ({ item }: CartItemProps) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [quantity, setQuantity] = useState(item.quantity);
 
@@ -19,22 +26,22 @@ const CartItem = ({ item }) => {
     });
   }
 
-  function updateQuantity(action, id) {
+  function updateQuantity(action: QuantityAction, id: Product["id"]) {
     if (action === "add") {
       setQuantity(prevQuantity => prevQuantity + 1);
-      items = cartItems.map(_item => {
-        if (_item.id === id) _item.quantity++;
-        return _item;
+      items = cartItems.map((it: Product) => {
+        if (it.id === id) it.quantity++;
+        return it;
       });
     } else if (action === "remove") {
       if (quantity === 1) {
-        items = cartItems.filter(_item => _item.id !== id);
+        items = cartItems.filter((it: Product) => it.id !== id);
         setQuantity(prevQuantity => prevQuantity - 1);
       } else {
         setQuantity(prevQuantity => prevQuantity - 1);
-        items = cartItems.map(_item => {
-          if (_item.id === id) _item.quantity--;
-          return _item;
+        items = cartItems.map((it: Product) => {
+          if (it.id === id) it.quantity--;
+          return it;
         });
       }
     }
@@ -43,7 +50,9 @@ const CartItem = ({ item }) => {
 
   // Update the quantity when cartItems changes (adding product from MenuContainer)
   useEffect(() => {
-    setQuantity(() => cartItems.filter(it => it.id === item.id)[0].quantity);
+    setQuantity(
+      () => cartItems.filter((it: Product) => it.id === item.id)[0].quantity
+    );
     //   eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems]);
 
@@ -57,7 +66,7 @@ const CartItem = ({ item }) => {
       <div className="flex flex-col gap-2">
         <p className="text-base text-gray-50">{item.title}</p>
         <p className="text-sm block text-gray-300 font-semibold">
-          {item.price * quantity} €
+          {parseFloat(item.price) * quantity} €
         </p>
       </div>
 

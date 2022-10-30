@@ -1,11 +1,14 @@
-export const actionType = {
-  SET_USER: "SET_USER",
-  SET_FOOD_ITEMS: "SET_FOOD_ITEMS",
-  SET_CART_SHOW: "SET_CART_SHOW",
-  SET_CART_ITEMS: "SET_CART_ITEMS",
-};
+import { Action } from "./reducerActions";
+import { AppState } from "./initialState";
 
-const reducer = (state, action) => {
+export enum actionType {
+  SET_USER = "SET_USER",
+  SET_FOOD_ITEMS = "SET_FOOD_ITEMS",
+  SET_CART_SHOW = "SET_CART_SHOW",
+  SET_CART_ITEMS = "SET_CART_ITEMS",
+}
+
+export const reducer = (state: AppState, action: Action) => {
   switch (action.type) {
     case actionType.SET_USER:
       return {
@@ -36,4 +39,4 @@ const reducer = (state, action) => {
   }
 };
 
-export default reducer;
+export type ReducerType = typeof reducer;

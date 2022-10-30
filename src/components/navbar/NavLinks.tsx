@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavLinks = props => {
+interface NavLinksProps {
+  justify?: string;
+}
+
+const NavLinks = (props: NavLinksProps) => {
   const justify = props.justify ? props.justify : undefined;
 
   return (
@@ -13,9 +17,9 @@ const NavLinks = props => {
           </li>
         </Link>
         <Link to={"/#menu"}>
-        <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-          Menu
-        </li>
+          <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            Menu
+          </li>
         </Link>
         <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
           About us

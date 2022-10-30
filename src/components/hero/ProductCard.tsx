@@ -1,7 +1,11 @@
-import React from "react";
+import { HeroProduct } from "../../types/heroProduct"
 
-export const ProductCard = props => {
-  const { id, imgSrc, name, description, price } = props.product;
+interface ProductCardProps {
+  product: HeroProduct
+}
+
+export const ProductCard = ( {product} : ProductCardProps) => {
+  const { id, imgSrc, name, description, price } = product;
   return (
     <div
       key={id}
