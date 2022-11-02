@@ -1,10 +1,10 @@
-import { HeroProduct } from "../../types/heroProduct"
+import { HeroProduct } from "../../types/heroProduct";
 
 interface ProductCardProps {
-  product: HeroProduct
+  product: HeroProduct;
 }
 
-export const ProductCard = ( {product} : ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { id, imgSrc, name, description, price } = product;
   return (
     <div
@@ -16,8 +16,13 @@ export const ProductCard = ( {product} : ProductCardProps) => {
       <p className="text-xs md:text-sm text-gray-500 my-3">{description}</p>
       <p className="text-base font-semibold text-headingColor">
         {price}
-        <span className="text-base text-red-600"> {process.env.REACT_APP_CURRENCY_SYMBOL}</span>
+        <span className="text-base text-red-600">
+          {" "}
+          {process.env.REACT_APP_CURRENCY_SYMBOL}
+        </span>
       </p>
     </div>
   );
 };
+
+export default ProductCard;

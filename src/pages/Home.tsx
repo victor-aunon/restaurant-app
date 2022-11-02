@@ -6,10 +6,10 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useStateValue } from "../context/StateProvider";
 
 // Components
-import HomeContainer from "./HomeContainer";
-import RowContainer from "./products/RowContainer";
-import MenuContainer from "./MenuContainer";
-import CartContainer from "./CartContainer";
+import { HeroContainer } from "../layout";
+import { RowContainer } from "../components/products";
+import { MenuContainer } from "../layout";
+import { CartContainer } from "../components/cart";
 
 const MainContainer = () => {
   const [{ foodItems, cartShow }] = useStateValue();
@@ -25,7 +25,7 @@ const MainContainer = () => {
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center select-none">
-      <HomeContainer />
+      <HeroContainer />
 
       <section className="w-full mt-8">
         <div className="w-full flex items-center justify-between">

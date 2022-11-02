@@ -16,7 +16,7 @@ import { saveProduct, getProducts } from "../utils/firebaseFunctions";
 import { useStateValue } from "../context/StateProvider";
 import { Product } from "../types/product";
 
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 const CreateContainer = () => {
   const [title, setTitle] = useState("");

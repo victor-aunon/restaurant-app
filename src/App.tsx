@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { actionType } from "./context/reducer";
 
+// Functions
+import { actionType } from "./context/reducer";
 import { useStateValue } from "./context/StateProvider";
 import { getProducts } from "./utils/firebaseFunctions";
 
-import { Header, MainContainer, CreateContainer } from "./components";
+// Components
+import { Header } from "./layout";
+import { Home, CreateProduct } from "./pages";
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
@@ -14,8 +17,7 @@ const App = () => {
   const params = useLocation();
   if (params.hash) {
     const element = document.querySelector(params.hash);
-    if (element)
-      element.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (element) element.scrollIntoView({ block: "start", behavior: "smooth" });
   }
 
   useEffect(() => {
@@ -38,8 +40,8 @@ const App = () => {
 
         <main className="mt-24 md:mt-16 py-8 md:py-14 px-4 md:px-16 w-full">
           <Routes>
-            <Route path="/*" element={<MainContainer />} />
-            <Route path="/createItem" element={<CreateContainer />} />
+            <Route path="/*" element={<Home />} />
+            <Route path="/createProduct" element={<CreateProduct />} />
           </Routes>
         </main>
       </div>

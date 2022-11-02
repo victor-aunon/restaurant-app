@@ -1,15 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
-
 import { RiEBike2Fill } from "react-icons/ri";
 
 import { heroProductsData } from "../utils/productsData";
 
 // Components
-import SectionSVGBackground from "./hero/SectionSVGBackground";
-import { ProductCard } from "./hero/ProductCard";
+import { SectionSVGBackground } from "../components/hero";
+import { ProductCard } from "../components/hero";
 
-function HomeContainer() {
+function HeroContainer() {
   return (
     <section
       className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full h-[83rem] sm:h-full md:h-[55rem] lg:h-full mb-8"
@@ -58,4 +56,4 @@ function HomeContainer() {
   );
 }
 
-export default HomeContainer;
+export default HeroContainer;

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { categories } from "../utils/productsData";
 import { useStateValue } from "../context/StateProvider";
 
 // Components
-import RowContainer from "./products/RowContainer";
+import { RowContainer } from "../components/products";
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState("starters");
