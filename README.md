@@ -1,3 +1,6 @@
+[![Test Restaurant App](https://github.com/victor-aunon/restaurant-app/actions/workflows/test_app.yaml/badge.svg)](https://github.com/victor-aunon/restaurant-app/actions/workflows/test_app.yaml)
+
+
 # About this project
 
 This project is a restaurant react app where you can add menu items to the cart, simulating an online order. The project uses:
