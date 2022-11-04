@@ -1,10 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { useStateValue } from "../../context/StateProvider";
-import { actionType } from "../../context/reducer";
-import { app } from "../../firebase.config";
+import useUserMenu from "../../hooks/useUserMenu"
 
 import { motion } from "framer-motion";
 import { MdAdd } from "react-icons/md";
@@ -13,39 +9,7 @@ import { FiLogOut } from "react-icons/fi";
 import UserImg from "../../assets/img/user_profile.png";
 
 const UserButton = () => {
-  const firebaseAuth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  const [{ user }, dispatch] = useStateValue();
-
-  const [isMenu, setIsMenu] = useState(false);
-
-  const login = async () => {
-    if (!user) {
-      const {
-        user: { providerData },
-      } = await signInWithPopup(firebaseAuth, provider);
-
-      dispatch({
-        type: actionType.SET_USER,
-        user: providerData[0],
-      });
-      // Push user info to the local storage
-      localStorage.setItem("user", JSON.stringify(providerData[0]));
-      return;
-    }
-    setIsMenu(!isMenu);
-  };
-
-  const logout = () => {
-    setIsMenu(false);
-    localStorage.clear();
-
-    dispatch({
-      type: actionType.SET_USER,
-      user: null,
-    });
-  };
+  const {user, login, logout, isMenu, setIsMenu} = useUserMenu()
 
   return (
     <div className="relative">
@@ -53,7 +17,7 @@ const UserButton = () => {
         whileTap={{ scale: 0.6 }}
         src={user ? user.photoURL : UserImg}
         className="w-8 min-w-[40px] h-8 min-h-[40px] drop-shadow-xl ml-4 cursor-pointer rounded-full"
-        alt="User profile"
+        alt={user?.displayName ? user.displayName : "User profile"}
         referrerPolicy="no-referrer"
         onClick={login}
       />
@@ -67,7 +31,7 @@ const UserButton = () => {
         >
           {/* Only show this option if the user is authenticated and is admin */}
           {user && user.email === process.env.REACT_APP_ADMIN_MAIL && (
-            <Link to={"/createItem"}>
+            <Link to={"/createProduct"}>
               <p
                 className="px-4 py-2 flex items-center  ml-auto gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base"
                 onClick={() => setIsMenu(false)}

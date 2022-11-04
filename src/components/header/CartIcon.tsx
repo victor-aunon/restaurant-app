@@ -4,7 +4,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { actionType } from "../../context/reducer";
 import { useStateValue } from "../../context/StateProvider";
 
-function Cart() {
+function CartIcon() {
   const [{ cartShow, cartItems }, dispatch] = useStateValue();
 
   function showCart() {
@@ -34,4 +34,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default CartIcon;
