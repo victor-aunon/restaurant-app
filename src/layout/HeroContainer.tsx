@@ -45,7 +45,7 @@ function HeroContainer() {
       <div className="py-2 flex flex-1 items-start relative -mt-[27rem] md:mt-8">
         <SectionSVGBackground />
 
-        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 2xl:px-30 lg:px-15 py-4 gap-4 flex-wrap">
+        <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center px-4 2xl:px-30 lg:px-15 py-4 gap-4 flex-wrap" data-testid="hero-container">
           {heroProductsData &&
             heroProductsData.map(pr => (
               <ProductCard key={pr.id} product={pr} />

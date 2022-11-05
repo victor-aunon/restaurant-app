@@ -18,7 +18,7 @@ const products: Product[] = [
     id: "1",
     title: "Gyozas",
     category: "Starters",
-    imageURL: "../assets/img/logo.png",
+    imageURL: "../assets/img/gyozas.png",
     price: "6.50",
     quantity: 1,
   },

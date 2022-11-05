@@ -19,6 +19,7 @@ const RowContainer = forwardRef<HTMLDivElement, RowContainerProps>(
             : "overflow-x-hidden flex-wrap justify-center"
         }`}
         ref={ref}
+        data-testid={flag ? "favorites-row-container" : "menu-row-container"}
       >
         {data && data.length > 0 ? (
           data.map(item => <MenuProductCard item={item} key={item.id} />)
