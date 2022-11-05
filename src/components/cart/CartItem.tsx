@@ -53,7 +53,7 @@ const CartItem = ({ item }: CartItemProps) => {
     setQuantity(
       () => cartItems.filter((it: Product) => it.id === item.id)[0].quantity
     );
-    //   eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems]);
 
   return (
@@ -74,6 +74,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <motion.div
           whileTap={{ scale: 0.75 }}
           onClick={() => updateQuantity("remove", item.id)}
+          data-testid="remove-item-button"
         >
           <BiMinus className="text-gray-50 text-lg" />
         </motion.div>
@@ -83,6 +84,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <motion.div
           whileTap={{ scale: 0.75 }}
           onClick={() => updateQuantity("add", item.id)}
+          data-testid="add-item-button"
         >
           <BiPlus className="text-gray-50 text-lg" />
         </motion.div>

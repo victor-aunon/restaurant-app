@@ -14,8 +14,8 @@ import userProfileImg from "../../assets/img/user_profile.png";
 describe("UserButton Component", () => {
   const user: UserInfo = {
     uid: "1",
-    displayName: "user",
-    email: "",
+    displayName: "User",
+    email: "test@gmail.com",
     phoneNumber: "666666666",
     photoURL: img,
     providerId: "Google",
@@ -24,7 +24,7 @@ describe("UserButton Component", () => {
   const admin: UserInfo = {
     uid: "1",
     displayName: "Admin",
-    email: process.env.REACT_APP_ADMIN_MAIL ?? "",
+    email: process.env.REACT_APP_ADMIN_MAIL ?? "test@gmail.com",
     phoneNumber: "666666666",
     photoURL: img,
     providerId: "Google",
@@ -53,7 +53,7 @@ describe("UserButton Component", () => {
     expect(image.getAttribute("alt")).toBe(user.displayName);
   });
 
-  test("Should not render new item menu option when clicking and other user than admin is logged in", () => {
+  test("Should not render new item menu option when other user than admin is logged in", () => {
     render(
       <Router>
         <StateProvider initialState={initialState} reducer={reducer}>
@@ -69,11 +69,12 @@ describe("UserButton Component", () => {
   });
 
   test("Should render new item menu option when clicking and admin is logged in", () => {
-    // Replace user with admin
-    initialState.user = admin;
     render(
       <Router>
-        <StateProvider initialState={initialState} reducer={reducer}>
+        <StateProvider
+          initialState={{ ...initialState, user: admin }}
+          reducer={reducer}
+        >
           <UserButton />
         </StateProvider>
       </Router>
@@ -101,7 +102,7 @@ describe("UserButton Component", () => {
     const logoutButton = screen.getByText("Logout");
     fireEvent.click(logoutButton);
 
-    expect(image.getAttribute("src")).toEqual(userProfileImg);
-    expect(image.getAttribute("alt")).toEqual("User profile");
+    expect(image.getAttribute("src")).toBe(userProfileImg);
+    expect(image.getAttribute("alt")).toBe("User profile");
   });
 });

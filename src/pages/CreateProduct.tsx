@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
 import { actionType } from "../context/reducer";
 
 import { MdFastfood, MdCloudUpload, MdDelete, MdEuro } from "react-icons/md";
 
 import { categories } from "../utils/productsData";
-import { storage } from "../firebase.config";
 import { saveProduct, getProducts } from "../utils/firebaseFunctions";
 import { useStateValue } from "../context/StateProvider";
+import { useProductImage } from "../hooks";
 import { Product } from "../types/product";
 
 import Loader from "../components/Loader";
@@ -22,20 +16,26 @@ const CreateContainer = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [imageAsset, setImageAsset] = useState("");
   const [fields, setFields] = useState(false);
   const [alertStatus, setAlertStatus] = useState("danger");
-  const [msg, setMsg] = useState("");
+  const [msg, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
+  const { imageAsset, setImageAsset, uploadImage, deleteImage } =
+    useProductImage({
+      setFields,
+      setAlertStatus,
+      setMessage,
+      setIsLoading,
+      hideSpinnerAndMessage,
+    });
   const [, dispatch] = useStateValue();
 
-  function hideSpinnerAndMsg() {
+  function hideSpinnerAndMessage() {
     setTimeout(() => {
       setFields(false);
       setIsLoading(false);
-      setMsg("");
+      setMessage("");
     }, 4000);
   }
 
@@ -45,65 +45,13 @@ const CreateContainer = () => {
     setPrice("");
   }
 
-  const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Show the spinner
-    setIsLoading(true);
-    if (e.target.files === null) return
-    const imageFile = e.target.files[0];
-
-    // Upload to firestore
-    const storageRef = ref(storage, `Images/${Date.now()}-${imageFile.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, imageFile);
-
-    uploadTask.on(
-      "state_changed",
-      snapshot => {
-        // const uploadProgress =
-        //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
-      error => {
-        console.error(error);
-        setFields(true);
-        setMsg(`Error uploading the image. ${error}`);
-        setAlertStatus("danger");
-        hideSpinnerAndMsg();
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-          setImageAsset(downloadURL);
-          setIsLoading(false);
-          setFields(true);
-          setMsg("Image uploaded successfully");
-          setAlertStatus("success");
-          hideSpinnerAndMsg();
-        });
-      }
-    );
-  };
-
-  const deleteImage = () => {
-    // Show the spinner
-    setIsLoading(true);
-
-    // Delete from firestore
-    const deleteRef = ref(storage, imageAsset);
-    deleteObject(deleteRef).then(() => {
-      setImageAsset("");
-      setIsLoading(false);
-      setFields(true);
-      setMsg("Image deleted successfully");
-      setAlertStatus("success");
-      hideSpinnerAndMsg();
-    });
-  };
-
   const saveItem = () => {
     try {
       if (!title || !category || !price || !imageAsset) {
         setFields(true);
-        setMsg("Required fields cannot be empty");
+        setMessage("Required fields cannot be empty");
         setAlertStatus("danger");
-        hideSpinnerAndMsg();
+        hideSpinnerAndMessage();
         return;
       }
 
@@ -120,29 +68,28 @@ const CreateContainer = () => {
       saveProduct(data);
       setIsLoading(false);
       setFields(true);
-      setMsg("Item saved successfully");
+      setMessage("Item saved successfully");
       setAlertStatus("success");
-      hideSpinnerAndMsg();
+      hideSpinnerAndMessage();
       clearData();
     } catch (error) {
       console.error(error);
       setFields(true);
-      setMsg(`Error uploading the image. ${error}`);
+      setMessage(`Error uploading the image. ${error}`);
       setAlertStatus("danger");
-      hideSpinnerAndMsg();
+      hideSpinnerAndMessage();
     }
-
     fetchFoodItems();
   };
 
-  const fetchFoodItems = async () => {
-    await getProducts().then(data => {
+  const fetchFoodItems = () => {
+    getProducts().then(data => {
       dispatch({
         type: actionType.SET_FOOD_ITEMS,
         foodItems: data,
       });
     });
-  }
+  };
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center">

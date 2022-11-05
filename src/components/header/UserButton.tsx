@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import useUserMenu from "../../hooks/useUserMenu"
+import { useUserMenu } from "../../hooks"
 
 import { motion } from "framer-motion";
 import { MdAdd } from "react-icons/md";

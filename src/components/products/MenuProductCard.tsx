@@ -6,8 +6,8 @@ import { actionType } from "../../context/reducer";
 import { Product } from "../../types/product";
 
 interface MenuProductCardProps {
-  item: Product,
-  key?: Product["id"]
+  item: Product;
+  key?: Product["id"];
 }
 
 const MenuProductCard = ({ item }: MenuProductCardProps) => {
@@ -50,7 +50,10 @@ const MenuProductCard = ({ item }: MenuProductCardProps) => {
           className="w-10 h-10 mb-auto mt-2 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md"
           onClick={() => addToCart(item)}
         >
-          <FaShoppingBasket className="text-white text-2xl" />
+          <FaShoppingBasket
+            className="text-white text-2xl"
+            data-testid="product-card-cart"
+          />
         </motion.div>
       </div>
 
